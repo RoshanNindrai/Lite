@@ -37,14 +37,12 @@ class NetworkRequestTest: CoreTests {
 
         let asyncExpectation = expectation(description: "Making POST Call")
 
-        var test : Resource = Resource<DummyPostResource>(url: URL(string:"https://httpbin.org/post")!,
-                                              type:.POST,
+        let test = Resource<DummyPostResource>(url: URL(string:"https://httpbin.org/post")!,
+                                               type:.POST(["echo":"value"] as AnyObject),
                                               parseJSON: {json in
                                                 guard let dictionaries = json as? JSONDictionary else { return nil }
                                                 return DummyPostResource.init(dataDict: dictionaries)
         })
-
-        test.parameter(parameter: ["echo":"value"])
 
         _ = Webservice.load(resource: test, completion: { data, response, error in
             assert(data?.formData != nil)

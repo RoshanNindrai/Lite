@@ -12,14 +12,11 @@ public typealias JSONDictionary = [String: AnyObject]
 
 /// This struct is used to represent a resource
 public struct Resource<R> {
-
     let url : URL
-    let type : RequestType?
+    let httpMethod : RequestType<Data>
     let parse : (Data) -> R?
 
-    fileprivate var header : [String : String]?
-    fileprivate var parameters : [String : Any]?
-    fileprivate var request : URLRequest?
+    var header: [String:String]?
 
 }
 
@@ -33,54 +30,24 @@ public extension Resource {
     ///
     /// - returns: returns a Resource that can be handed over to WebService
     init(url: URL,
-         type : RequestType = .GET,
+         type : RequestType<AnyObject> = .GET,
+         header: [String:String]?,
          parseJSON: @escaping (Any) -> R?) {
 
         self.url = url
-        self.parse = { data in
+        self.header = header
+        parse = { data in
             let json = try? JSONSerialization.jsonObject(with: data,
                                                          options : [])
             return json.flatMap(parseJSON)
         }
-        self.type = type
-        createRequest()
+
+        httpMethod = type.map() { json in
+            return (json as! Dictionary<String, String>).queryString().data(using: .utf8)!
+        }
+
     }
 
 }
 
-
-// MARK: - Setters
-public extension Resource {
-
-    mutating func header(header: [String: String]) {
-        self.header = header
-        request?.allHTTPHeaderFields = self.header
-    }
-
-
-    /// This method adds the httpBody Prameters
-    ///
-    /// - Parameter parameter: The http body for requests
-    mutating func parameter(parameter: [String: Any]) {
-        self.parameters = parameter
-        request?.httpBody = self.parameters?.queryString().data(using: .utf8)
-    }
-
-}
-
-public extension Resource {
-
-    /// This method creates a URLRequest for a resource
-    ///
-    /// - returns: a URLRequest for URLSession
-    func urlRequest() -> URLRequest {
-        return request!
-    }
-
-    /// This method create the URLRequest object
-    mutating func createRequest() {
-        request = URLRequest(url:url)
-        request!.httpMethod = self.type!.rawValue
-    }
-}
 

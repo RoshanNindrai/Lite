@@ -18,6 +18,7 @@
 		AB955CF31E1B2C4E008014E6 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CEE1E1B2C4E008014E6 /* Resource.swift */; };
 		AB955CF41E1B2C4E008014E6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CEF1E1B2C4E008014E6 /* Service.swift */; };
 		AB955CF51E1B2C4E008014E6 /* Dictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CF11E1B2C4E008014E6 /* Dictionary+Utils.swift */; };
+		ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		AB955CEE1E1B2C4E008014E6 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		AB955CEF1E1B2C4E008014E6 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		AB955CF11E1B2C4E008014E6 /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Utils.swift"; sourceTree = "<group>"; };
+		ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableURLRequest+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				AB955CE71E1B2C1A008014E6 /* Dictionary+Utils.swift */,
+				ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				AB955CE91E1B2C1A008014E6 /* Resource.swift in Sources */,
 				AB955CEA1E1B2C1A008014E6 /* Service.swift in Sources */,
 				AB955CEB1E1B2C1A008014E6 /* Dictionary+Utils.swift in Sources */,
+				ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +470,7 @@
 				AB955CDE1E1B2BE0008014E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB955CDF1E1B2BE0008014E6 /* Build configuration list for PBXNativeTarget "CoreTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +479,7 @@
 				AB955CE11E1B2BE0008014E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

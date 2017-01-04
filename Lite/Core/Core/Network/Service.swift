@@ -42,7 +42,8 @@ public extension Webservice {
     /// - parameter completion: The completion handler takes in a resource
     class func load<A>( resource: Resource<A>, completion: @escaping (A?, URLResponse?, Error?) -> ()) -> URLSessionTask? {
 
-        let task = shared.session?.dataTask(with: resource.urlRequest()) { data, response, error in
+        let request = URLRequest.init(resource: resource)
+        let task = shared.session?.dataTask(with: request) { data, response, error in
 
             if let data = data {
                 completion(resource.parse(data), response, error)
