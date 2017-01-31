@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 public typealias JSONDictionary = [String: AnyObject]
 
 /// This struct is used to represent a resource
@@ -49,5 +50,3 @@ public extension Resource {
     }
 
 }
-
-

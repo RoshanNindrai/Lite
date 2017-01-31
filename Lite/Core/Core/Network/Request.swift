@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 /// This represent the kind of network activity that is gonna takes place
 ///
 /// - POST:   used for a post request
@@ -20,6 +21,7 @@ public enum RequestType<Body> {
     case DELETE(Body)
     case PUT(Body)
 }
+
 
 extension RequestType {
 
@@ -34,6 +36,7 @@ extension RequestType {
     }
 
 }
+
 
 extension RequestType {
 

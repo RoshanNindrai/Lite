@@ -30,7 +30,7 @@ class WebServiceTest : CoreTests {
                     print("reponse status code \(httpResponse.statusCode)")
                 }
                 if let reponsedata = data { print(reponsedata) }
-            case .error(let error):
+            case .failure(let error):
                 print("OMG ERROR \(error.localizedDescription)")
 
             }

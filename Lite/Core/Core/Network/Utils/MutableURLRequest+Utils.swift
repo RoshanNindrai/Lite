@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 extension URLRequest {
 
     init<A>(resource: Resource<A>) {

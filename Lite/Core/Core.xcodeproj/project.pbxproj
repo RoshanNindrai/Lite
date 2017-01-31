@@ -18,6 +18,7 @@
 		AB955CF31E1B2C4E008014E6 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CEE1E1B2C4E008014E6 /* Resource.swift */; };
 		AB955CF41E1B2C4E008014E6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CEF1E1B2C4E008014E6 /* Service.swift */; };
 		AB955CF51E1B2C4E008014E6 /* Dictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CF11E1B2C4E008014E6 /* Dictionary+Utils.swift */; };
+		AB98E47F1E4019A3003E5FC0 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E47E1E4019A3003E5FC0 /* Response.swift */; };
 		ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		AB955CEE1E1B2C4E008014E6 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		AB955CEF1E1B2C4E008014E6 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		AB955CF11E1B2C4E008014E6 /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Utils.swift"; sourceTree = "<group>"; };
+		AB98E47E1E4019A3003E5FC0 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableURLRequest+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 				AB955CE31E1B2C1A008014E6 /* Request.swift */,
 				AB955CE41E1B2C1A008014E6 /* Resource.swift */,
 				AB955CE51E1B2C1A008014E6 /* Service.swift */,
+				AB98E47E1E4019A3003E5FC0 /* Response.swift */,
 				AB955CE61E1B2C1A008014E6 /* Utils */,
 			);
 			path = Network;
@@ -261,6 +264,7 @@
 				AB955CE91E1B2C1A008014E6 /* Resource.swift in Sources */,
 				AB955CEA1E1B2C1A008014E6 /* Service.swift in Sources */,
 				AB955CEB1E1B2C1A008014E6 /* Dictionary+Utils.swift in Sources */,
+				AB98E47F1E4019A3003E5FC0 /* Response.swift in Sources */,
 				ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,7 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -376,7 +380,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
