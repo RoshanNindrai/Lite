@@ -19,21 +19,20 @@ class WebServiceTest : CoreTests {
                                               type:.GET,
                                               parseJSON: {json in
                                                 guard let dictionaries = json as? JSONDictionary else { return nil }
-                                                return DummyGetResource.init(dataDict: dictionaries)
+                                                return DummyGetResource(dataDict: dictionaries)
         })
 
-        let task = Webservice.load(resource: test, completion: { data, response, error in
+        let task = Webservice.load(resource: test, completion: { result in
 
-            if error != nil {
-                print("OMG ERROR \(error?.localizedDescription)")
-            }
+            switch result {
+            case .success(let data, let httpResponse):
+                if let httpResponse = httpResponse as? HTTPURLResponse {
+                    print("reponse status code \(httpResponse.statusCode)")
+                }
+                if let reponsedata = data { print(reponsedata) }
+            case .error(let error):
+                print("OMG ERROR \(error.localizedDescription)")
 
-            if let httpResponse = response as? HTTPURLResponse {
-                print("reponse status code \(httpResponse.statusCode)")
-            }
-
-            if data != nil {
-                print(data?.origin ?? "No data origin to print")
             }
 
             asyncExpectation.fulfill()

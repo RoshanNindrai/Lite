@@ -8,6 +8,16 @@
 
 import Foundation
 
+
+/// This wraps the response from the server based on the state
+///
+/// - success: Wraps the actual data response and URLResponse for status code
+/// - error: Wraps the error object that is returned by th URLSession
+public enum Response<A> {
+    case success(A?, URLResponse?)
+    case error(Error)
+}
+
 final public class Webservice {
 
     //  The configuration for the session that is to be handled
@@ -40,15 +50,15 @@ public extension Webservice {
     ///
     /// - parameter resource:   The request resource that was asked by the user
     /// - parameter completion: The completion handler takes in a resource
-    class func load<A>( resource: Resource<A>, completion: @escaping (A?, URLResponse?, Error?) -> ()) -> URLSessionTask? {
+    class func load<A>( resource: Resource<A>, completion: @escaping (Response<A>) -> ()) -> URLSessionTask? {
 
         let request = URLRequest.init(resource: resource)
         let task = shared.session?.dataTask(with: request) { data, response, error in
 
             if let data = data {
-                completion(resource.parse(data), response, error)
-            } else {
-                completion(nil, response, error)
+                completion(Response.success(resource.parse(data), response))
+            } else if let error = error {
+                completion(Response.error(error))
             }
         }
 

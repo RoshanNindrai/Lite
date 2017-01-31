@@ -31,7 +31,7 @@ public extension Resource {
     /// - returns: returns a Resource that can be handed over to WebService
     init(url: URL,
          type : RequestType<AnyObject> = .GET,
-         header: [String:String]?,
+         header: [String:String]? = nil,
          parseJSON: @escaping (Any) -> R?) {
 
         self.url = url

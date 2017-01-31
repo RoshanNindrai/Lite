@@ -22,8 +22,10 @@ class NetworkRequestTest: CoreTests {
                                             return DummyGetResource.init(dataDict: dictionaries)
         })
 
-        _ = Webservice.load(resource: test, completion: { data, response, error in
-            print(data?.origin ?? "No origin value")
+        _ = Webservice.load(resource: test, completion: { result in
+             if case let Response.success(data, _) = result {
+                print(data?.origin ?? "No origin value")
+            }
             asyncExpectation.fulfill()
         })
 
@@ -44,10 +46,12 @@ class NetworkRequestTest: CoreTests {
                                                 return DummyPostResource.init(dataDict: dictionaries)
         })
 
-        _ = Webservice.load(resource: test, completion: { data, response, error in
-            assert(data?.formData != nil)
-            assert(data?.formData as! [String:String] == ["echo":"value"])
-            asyncExpectation.fulfill()
+        _ = Webservice.load(resource: test, completion: { result in
+            if case let Response.success(data, _) = result {
+                assert(data?.formData != nil)
+                assert(data?.formData as! [String:String] == ["echo":"value"])
+                asyncExpectation.fulfill()
+            }
         })
 
         waitForExpectations(timeout: 10.0) { (error) in
