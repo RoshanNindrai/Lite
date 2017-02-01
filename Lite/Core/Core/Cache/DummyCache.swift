@@ -11,11 +11,8 @@ import Foundation
 private let DEFAULT_MEMORY_SIZE = 50 * 1024 * 1024
 
 public final class DummyCache<K, V>: NSObject {
-
     public typealias Key = K
     public typealias Value = V
-
-
 }
 
 extension DummyCache : CachePolicy {

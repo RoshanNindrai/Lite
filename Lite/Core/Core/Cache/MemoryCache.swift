@@ -35,7 +35,6 @@ extension MemoryCache : CachePolicy {
     }
 
     public func set(key: NSString, value: V) {
-        print("Setting in memory for Key \(key)")
         storage.setObject(value, forKey: key)
     }
 }

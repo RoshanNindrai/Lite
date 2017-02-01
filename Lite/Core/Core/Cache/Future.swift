@@ -8,15 +8,15 @@
 
 import Foundation
 
-public struct Future<Value> {
-    fileprivate var internalValue : Value?
-    init(_ value: Value?) {
+public struct Future<T> {
+    fileprivate var internalValue : T?
+    init(_ value: T?) {
         internalValue = value
     }
 }
 
 public extension Future {
-    public var value: Value? {
+    public var value: T? {
         get { return internalValue }
     }
 
