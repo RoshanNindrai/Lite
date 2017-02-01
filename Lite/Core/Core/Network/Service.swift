@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 final public class Webservice {
 
     //  The configuration for the session that is to be handled
@@ -25,7 +24,6 @@ final public class Webservice {
     }
 }
 
-
 public extension Webservice {
 
     /// To add custom session configuration to the URLSession
@@ -36,7 +34,6 @@ public extension Webservice {
     }
 
 }
-
 
 public extension Webservice {
 
