@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB2D52EB1E41A431005EC446 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2D52E91E41A3E7005EC446 /* MemoryCache.swift */; };
 		AB2DB8531E41A27500E46816 /* BasicCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2DB8521E41A27500E46816 /* BasicCache.swift */; };
+		AB641C891E41AD02006535A7 /* DummyCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB641C881E41AD02006535A7 /* DummyCache.swift */; };
 		AB955CD21E1B2BE0008014E6 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB955CC81E1B2BE0008014E6 /* Core.framework */; };
 		AB955CD71E1B2BE0008014E6 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CD61E1B2BE0008014E6 /* CoreTests.swift */; };
 		AB955CD91E1B2BE0008014E6 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = AB955CCB1E1B2BE0008014E6 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		AB2D52E91E41A3E7005EC446 /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemoryCache.swift; path = Cache/MemoryCache.swift; sourceTree = "<group>"; };
 		AB2DB8521E41A27500E46816 /* BasicCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicCache.swift; path = Cache/BasicCache.swift; sourceTree = "<group>"; };
+		AB641C881E41AD02006535A7 /* DummyCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DummyCache.swift; path = Cache/DummyCache.swift; sourceTree = "<group>"; };
 		AB955CC81E1B2BE0008014E6 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB955CCB1E1B2BE0008014E6 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		AB955CCC1E1B2BE0008014E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				AB98E48E1E4178BD003E5FC0 /* Future.swift */,
 				AB2DB8521E41A27500E46816 /* BasicCache.swift */,
 				AB2D52E91E41A3E7005EC446 /* MemoryCache.swift */,
+				AB641C881E41AD02006535A7 /* DummyCache.swift */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				AB98E48D1E4177B4003E5FC0 /* CachePolicy.swift in Sources */,
 				AB955CE91E1B2C1A008014E6 /* Resource.swift in Sources */,
 				AB955CEA1E1B2C1A008014E6 /* Service.swift in Sources */,
+				AB641C891E41AD02006535A7 /* DummyCache.swift in Sources */,
 				AB2DB8531E41A27500E46816 /* BasicCache.swift in Sources */,
 				AB955CEB1E1B2C1A008014E6 /* Dictionary+Utils.swift in Sources */,
 				AB98E47F1E4019A3003E5FC0 /* Response.swift in Sources */,

@@ -15,8 +15,8 @@ public struct Future<Value> {
     }
 }
 
-extension Future {
-    var value: Value? {
+public extension Future {
+    public var value: Value? {
         get { return internalValue }
     }
 

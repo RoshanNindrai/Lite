@@ -19,16 +19,13 @@ public protocol CachePolicy {
 }
 
 public extension CachePolicy {
-    func compose<B: CachePolicy>(cache: B) -> BasicCache<Key, Value> where B.Key == Key, B.Value == Value {
+    func compose<B: CachePolicy>(_ cache: B) -> BasicCache<Key, Value> where B.Key == Key, B.Value == Value {
         return BasicCache(getC: { key in
-            if let _ = self.get(key: key) {
-                return nil
-            }
-            else {
-                return cache.get(key: key)
-            }
+            if let data = self.get(key: key) {  return data }
+            else { return cache.get(key: key) }
         }, setC: {key, value in
             self.set(key: key, value: value)
+            cache.set(key: key, value: value)
         })
     }
 }

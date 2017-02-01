@@ -12,23 +12,12 @@ import Core
 class BasicCacheTest : CoreTests {
 
     func testCombine() {
-        let cache = BasicCache<String, NSData>.init(getC: {key in
-            print("Memory Cache hit")
-            return nil
-        }, setC: {key, value in
-            print(key)
-            print(value)
-        })
-        let discCache = BasicCache<String, NSData>.init(getC: {key in
-            print("Disc Cache hit")
-            return nil
-        }, setC: {key, value in
-            print(key)
-            print(value)
-        })
 
-        let combined = cache.compose(cache: discCache)
-        let _ = combined.get(key: "Hello World")
+        let dummyCache = DummyCache<NSString, NSString>()
+        let memoryCache = MemoryCache<NSString, NSString>()
+        let combined = dummyCache.compose(memoryCache).compose(dummyCache)
+        combined.set(key: "Hello", value: "Value Stored")
+        print(combined.get(key: "Hello")?.value ?? "No value found for key Hello World")
     }
 
 }
