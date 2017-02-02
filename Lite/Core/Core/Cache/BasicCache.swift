@@ -26,7 +26,6 @@ public class BasicCache<K, V> : NSObject {
 
 }
 
-
 extension BasicCache : CachePolicy {
     public func get(key: K) -> Future<V>? {
         return getC(key)

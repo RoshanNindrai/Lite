@@ -8,53 +8,33 @@
 
 import Foundation
 
-struct FileStorage {
-    var basePath : String?
-    var baseURL = try! FileManager.default.url(for: .documentDirectory,
-                                               in: .userDomainMask,
-                                               appropriateFor: nil, create: true)
+public final class DiscCache<K: StringConvertable, V: NSCoding>: NSObject {
 
-    init(path: String? = "com.lite.cache") {
-        basePath = path
-        baseURL = baseURL.appendingPathComponent(basePath!, isDirectory: true)
-    }
-
-    subscript(key: String) -> Data? {
-        get {
-            let url = baseURL.appendingPathComponent(key)
-            return try? Data(contentsOf: url)
-        }
-        set {
-            let url = baseURL.appendingPathComponent(key)
-            _ = try? newValue?.write(to: url)
-        }
-    }
-
-}
-
-public final class DiscCache<K, V>: NSObject {
-
-    public typealias Key = String
-    public typealias Value = Data
+    public typealias Key = K
+    public typealias Value = V
 
     fileprivate var storage : FileStorage?
 
     public override init() {
         super.init()
-        storage = FileStorage(path: "mono")
+        storage = FileStorage()
     }
-
 }
 
 extension DiscCache : CachePolicy {
 
-    public func get(key: String) -> Future<Data>? {
-        return Future<Data>(storage![key])
+    public func get(key: K) -> Future<V>? {
+        if let archievedData = storage![key.toString()] {
+            let unArchivedData = NSKeyedUnarchiver.unarchiveObject(with: archievedData)
+            return Future<V>(unArchivedData as? V)
+        }
+
+        return nil
     }
 
-    public func set(key: String, value: Data) {
-        storage![key] = value
+    public func set(key: K, value: V) {
+        let data = NSKeyedArchiver.archivedData(withRootObject: value)
+        storage![key.toString()] = data
     }
 
 }
-
