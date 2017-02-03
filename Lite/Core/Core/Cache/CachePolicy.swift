@@ -8,10 +8,14 @@
 
 import Foundation
 
+let DEFAULT_EXPIRY_SIZE = 365 * 24 * 60 * 60
+
 public protocol CachePolicy {
 
     associatedtype Key
     associatedtype Value
+
+    var expiry : TimeInterval? { get }
 
     func get(key: Key) -> Future<Value>?
     func set(key: Key, value: Value)

@@ -15,11 +15,14 @@ public final class MemoryCache<K: Hashable, V: AnyObject>: NSObject {
     public typealias Key = NSString
     public typealias Value = V
 
+    public var expiry: TimeInterval?
+
     fileprivate var storage: NSCache<Key, Value>
 
-    public init(capacity : Int = DEFAULT_MEMORY_SIZE) {
+    public init(capacity : Int = DEFAULT_MEMORY_SIZE, expiry: CacheExpiry = .Never) {
         storage = NSCache<Key, Value>()
         storage.totalCostLimit = capacity
+        self.expiry = expiry.time
     }
 
 }

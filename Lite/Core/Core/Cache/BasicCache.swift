@@ -16,6 +16,8 @@ public class BasicCache<K, V> : NSObject {
     public typealias Key = K
     public typealias Value = V
 
+    public var expiry: TimeInterval?
+
     fileprivate var getC : getClosure
     fileprivate var setC : setClosure
 
