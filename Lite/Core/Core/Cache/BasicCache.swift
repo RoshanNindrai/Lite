@@ -8,15 +8,13 @@
 
 import Foundation
 
-public class BasicCache<K, V> : NSObject {
+public class BasicCache<K: StringConvertable, V> : BaseCache<K, V> {
 
     public typealias getClosure = (_ Key: K) -> Future<V>?
-    public typealias setClosure = (_ Key: K, _ value: V) -> Void
+    public typealias setClosure = (_ Key: K, _ value: V, _ expiry: CacheExpiry) -> Void
 
     public typealias Key = K
     public typealias Value = V
-
-    public var expiry: TimeInterval?
 
     fileprivate var getC : getClosure
     fileprivate var setC : setClosure
@@ -33,7 +31,8 @@ extension BasicCache : CachePolicy {
         return getC(key)
     }
 
-    public func set(key: K, value: V) {
-        setC(key, value)
+    public func set(key: K, value: V, expiry: CacheExpiry = .Never) {
+        setC(key, value, expiry)
     }
+
 }

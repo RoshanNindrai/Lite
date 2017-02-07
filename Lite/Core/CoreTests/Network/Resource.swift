@@ -33,8 +33,6 @@ extension DummyPostResource {
         guard let formStringData = dataDict["form"] else {
             return nil
         }
-
-        print(dataDict)
         self.formData = formStringData
     }
 }

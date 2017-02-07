@@ -8,7 +8,20 @@
 
 import Foundation
 
-public struct Future<T> {
+public class Future<T> : NSObject, NSCoding {
+
+    public required init?(coder aDecoder: NSCoder) {
+        internalValue = aDecoder.decodeObject(forKey: "internal_value") as? T
+    }
+//
+//    public func encode(with aCoder: NSCoder) {
+//        aCoder.encode(internalValue, forKey: "internal_value")
+//    }
+
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(internalValue, forKey: "internal_value")
+    }
+
     fileprivate var internalValue : T?
     init(_ value: T?) {
         internalValue = value
@@ -16,7 +29,7 @@ public struct Future<T> {
 }
 
 public extension Future {
-    public var value: T? {
+    public var val: T? {
         get { return internalValue }
     }
 

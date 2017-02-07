@@ -8,13 +8,23 @@
 
 import Foundation
 
-public protocol StringConvertable {
+
+/// This protocol is used to represent a string
+public protocol StringConvertable: Hashable {
     func toString() -> String
 }
+
+//MARK: StringConvertable support for common key types
 
 extension NSURL : StringConvertable {
     public func toString() -> String {
         return absoluteString!
+    }
+}
+
+extension URL : StringConvertable {
+    public func toString() -> String {
+        return absoluteString
     }
 }
 

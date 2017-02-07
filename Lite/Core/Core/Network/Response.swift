@@ -14,6 +14,6 @@ import Foundation
 /// - success: Wraps the actual data response and URLResponse for status code
 /// - error: Wraps the error object that is returned by th URLSession
 public enum Response<A> {
-    case success(A?, URLResponse?)
+    case success(A?, URLResponse?, Data?)
     case failure(Error)
 }

@@ -22,12 +22,10 @@ class DictionaryUtilTest : CoreTests {
 
         //test for more pairs
         let test_three_dict : [String:Any] = ["key1":"value1", "key2":"value2"]
-        print(test_three_dict.queryString())
         assert(test_three_dict.queryString() == "key2=value2&key1=value1")
 
         //test for more nested pairs
         let test_four_dict : [String:Any] = ["key1":"value1", "key2":["nkey2":"nvalue2"]]
-        print(test_four_dict.queryString())
         assert(test_four_dict.queryString() == "key2=[\"nkey2\": \"nvalue2\"]&key1=value1")
 
     }

@@ -16,7 +16,7 @@ public struct Resource<R> {
     let url : URL
     let httpMethod : RequestType<Data>
     let parse : (Data) -> R?
-
+    let cacheExpiry : CacheExpiry?
     var header: [String:String]?
 
 }
@@ -32,11 +32,12 @@ public extension Resource {
     /// - returns: returns a Resource that can be handed over to WebService
     init(url: URL,
          type : RequestType<AnyObject> = .GET,
-         header: [String:String]? = nil,
+         header: [String:String]? = nil, cacheExpiry: CacheExpiry = .Never,
          parseJSON: @escaping (Any) -> R?) {
 
         self.url = url
         self.header = header
+        self.cacheExpiry = cacheExpiry
         parse = { data in
             let json = try? JSONSerialization.jsonObject(with: data,
                                                          options : [])

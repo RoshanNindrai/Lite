@@ -48,7 +48,7 @@ public extension Webservice {
         let task = shared.session?.dataTask(with: request) { data, response, error in
 
             if let data = data {
-                completion(.success(resource.parse(data), response))
+                completion(.success(resource.parse(data), response, data))
             } else if let error = error {
                 completion(.failure(error))
             }

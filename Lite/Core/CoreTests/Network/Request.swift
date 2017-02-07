@@ -23,7 +23,7 @@ class NetworkRequestTest: CoreTests {
         })
 
         _ = Webservice.load(resource: test, completion: { result in
-             if case let Response.success(data, _) = result {
+             if case let Response.success(data, _, _) = result {
                 print(data?.origin ?? "No origin value")
             }
             asyncExpectation.fulfill()
@@ -47,7 +47,7 @@ class NetworkRequestTest: CoreTests {
         })
 
         _ = Webservice.load(resource: test, completion: { result in
-            if case let Response.success(data, _) = result {
+            if case let Response.success(data, _, _) = result {
                 assert(data?.formData != nil)
                 assert(data?.formData as! [String:String] == ["echo":"value"])
                 asyncExpectation.fulfill()

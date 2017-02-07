@@ -12,24 +12,25 @@ let DEFAULT_EXPIRY_SIZE = 365 * 24 * 60 * 60
 
 public protocol CachePolicy {
 
-    associatedtype Key
+    associatedtype Key: StringConvertable
     associatedtype Value
 
-    var expiry : TimeInterval? { get }
+    var expiry : CacheExpiry? { get }
 
     func get(key: Key) -> Future<Value>?
-    func set(key: Key, value: Value)
+    func set(key: Key, value: Value, expiry : CacheExpiry)
     
 }
+
 
 public extension CachePolicy {
     func compose<B: CachePolicy>(_ cache: B) -> BasicCache<Key, Value> where B.Key == Key, B.Value == Value {
         return BasicCache(getC: { key in
             if let data = self.get(key: key) {  return data }
             else { return cache.get(key: key) }
-        }, setC: {key, value in
-            self.set(key: key, value: value)
-            cache.set(key: key, value: value)
+        }, setC: {key, value, expiry in
+            self.set(key: key, value: value, expiry: expiry)
+            cache.set(key: key, value: value, expiry: expiry)
         })
     }
 }

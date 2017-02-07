@@ -8,36 +8,34 @@
 
 import Foundation
 
-private let DEFAULT_MEMORY_SIZE = 50 * 1024 * 1024
+public final class MemoryCache<K: StringConvertable, V: AnyObject>: BaseCache<K, V> {
 
-public final class MemoryCache<K: Hashable, V: AnyObject>: NSObject {
-
-    public typealias Key = NSString
+    public typealias Key = K
     public typealias Value = V
 
-    public var expiry: TimeInterval?
+    fileprivate var storage: MemoryStorage<Key, Value>?
 
-    fileprivate var storage: NSCache<Key, Value>
-
-    public init(capacity : Int = DEFAULT_MEMORY_SIZE, expiry: CacheExpiry = .Never) {
-        storage = NSCache<Key, Value>()
-        storage.totalCostLimit = capacity
-        self.expiry = expiry.time
+    public init(capacity : Int = DEFAULT_MEMORY_SIZE) {
+        super.init()
+        storage = MemoryStorage<Key, Value>()
     }
 
 }
 
-extension MemoryCache : CachePolicy {
+extension MemoryCache: CachePolicy {
 
-    public func get(key: NSString) -> Future<V>? {
-        guard let value = storage.object(forKey: key) else {
-            return nil
+    public func get(key: Key) -> Future<V>? {
+        if let data = storage?[key, expiry!] {
+            return Future<V>(data)
         }
-        return Future<V>(value)
+
+        return nil
+    }
+
+    public func set(key: Key, value: V, expiry: CacheExpiry) {
+        self.expiry = expiry
+        storage?[key, self.expiry!] = value
 
     }
 
-    public func set(key: NSString, value: V) {
-        storage.setObject(value, forKey: key)
-    }
 }

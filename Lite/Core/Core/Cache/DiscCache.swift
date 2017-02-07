@@ -8,26 +8,22 @@
 
 import Foundation
 
-public final class DiscCache<K: StringConvertable, V: NSCoding>: NSObject {
+public final class DiscCache<K: StringConvertable, V>: BaseCache<K, V> {
 
     public typealias Key = K
     public typealias Value = V
-
-    public var expiry: TimeInterval?
-
     fileprivate var storage : FileStorage?
 
-    public init(expiry: CacheExpiry = .Never) {
+    public override init() {
         super.init()
         storage = FileStorage()
-        self.expiry = expiry.time
     }
 }
 
 extension DiscCache : CachePolicy {
 
     public func get(key: K) -> Future<V>? {
-        if let archievedData = storage![key.toString(), expiry!] {
+        if let archievedData = storage?[key.toString(), expiry!] {
             let unArchivedData = NSKeyedUnarchiver.unarchiveObject(with: archievedData)
             return Future<V>(unArchivedData as? V)
         }
@@ -35,9 +31,10 @@ extension DiscCache : CachePolicy {
         return nil
     }
 
-    public func set(key: K, value: V) {
+    public func set(key: K, value: V, expiry: CacheExpiry = .Never) {
         let data = NSKeyedArchiver.archivedData(withRootObject: value)
-        storage![key.toString(), expiry!] = data
+        self.expiry = expiry
+        storage?[key.toString(), self.expiry!] = data
     }
 
 }

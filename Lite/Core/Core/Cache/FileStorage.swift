@@ -21,12 +21,12 @@ struct FileStorage {
         prepareFS()
     }
 
-    subscript(key: String, expiry: TimeInterval) -> Data? {
+    subscript(key: String, expiry: CacheExpiry) -> Data? {
         get {
             let cacheFilePath = baseURL.appendingPathComponent(key.sha1())
             if let expiryDate = expiryTable?.value(forKey: key.sha1()) as? Date {
                 let timeSinceLastCache = Date().timeIntervalSince(expiryDate)
-                if timeSinceLastCache >= expiry {
+                if timeSinceLastCache >= expiry.time {
                     if (FileManager.default.fileExists(atPath: cacheFilePath.path)) {
                         try! FileManager.default.removeItem(at: cacheFilePath)
                         return nil
@@ -40,13 +40,13 @@ struct FileStorage {
         set {
             expiryTable?.set(Date(), forKey: key.sha1())
             let url = baseURL.appendingPathComponent(key.sha1())
-            _ = try? newValue?.write(to: url)
+            _ = try! newValue?.write(to: url)
         }
     }
 
     private func prepareFS() {
         var isDir : ObjCBool = false
-        if (FileManager.default.fileExists(atPath: baseURL.absoluteString, isDirectory:&isDir)) {
+        if (!FileManager.default.fileExists(atPath: baseURL.path, isDirectory:&isDir)) {
             try! FileManager.default.createDirectory(at: baseURL, withIntermediateDirectories: true, attributes: nil)
         }
     }
