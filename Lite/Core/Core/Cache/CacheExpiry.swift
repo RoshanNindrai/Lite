@@ -13,21 +13,24 @@ public enum CacheExpiry {
     case Seconds(Int)
     case Hours(Int)
     case Days(Int)
+    case Date(Date)
 }
 
 public extension CacheExpiry {
-    var time : TimeInterval {
+    var time : Date {
         switch self {
         case .Never:
-            return TimeInterval(DEFAULT_EXPIRY_SIZE)
+            return Foundation.Date().addingTimeInterval(TimeInterval(DEFAULT_EXPIRY_SIZE))
         case .Seconds(let seconds):
-            return TimeInterval(seconds)
+            return Foundation.Date().addingTimeInterval(TimeInterval(seconds))
         case .Hours(let hours):
             let hour = hours * 60 * 60
-            return TimeInterval(hour)
+            return Foundation.Date().addingTimeInterval(TimeInterval(hour))
         case .Days(let days):
             let days = days * 24 * 60 * 60
-            return TimeInterval(days)
+            return Foundation.Date().addingTimeInterval(TimeInterval(days))
+        case .Date(let date):
+            return Foundation.Date().addingTimeInterval(date.timeIntervalSince(Foundation.Date()))
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public struct CacheFactory<K: StringConvertable, V: AnyObject> {
 
-    static var cache: BasicCache<K, V> {
+    static var defaultCache: BasicCache<K, V> {
         let memoryCache = MemoryCache<K, V>()
         let discCache = DiscCache<K, V>()
         return memoryCache.compose(discCache)

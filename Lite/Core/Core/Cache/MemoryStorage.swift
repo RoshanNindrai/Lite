@@ -26,29 +26,27 @@ public struct MemoryStorage<K: StringConvertable, V: AnyObject> {
 
 public extension MemoryStorage {
 
-    subscript(key: Key, expiry: CacheExpiry) -> Value? {
+    subscript(key: Key) -> Future<Value>? {
         get {
             let hashedKey = NSString(string: key.toString().sha1())
-            if let expiryDate = expiryTable?.value(forKey: hashedKey.toString()) as? Date {
-                let timeSinceLastCache = Date().timeIntervalSince(expiryDate)
-                if timeSinceLastCache >= expiry.time {
+            if let expiryTimeInterval = expiryTable?.value(forKey: key.toString().sha1()) as? Date {
+                let timeSinceLastCache = Date()
+                if timeSinceLastCache.compare(expiryTimeInterval)  == .orderedDescending {
                     storage.removeObject(forKey: hashedKey)
                     return nil
                 }
             }
 
             if let cachedData = storage.object(forKey: hashedKey) {
-                return cachedData
+                return Future<Value>(cachedData, cacheExpiry: expiryTable?.value(forKey: hashedKey.toString()) as! Date)
             }
             return nil
         }
         set {
             let hashedKey = NSString(string: key.toString().sha1())
-            expiryTable?.set(Date(), forKey: hashedKey.toString())
-            storage.setObject(newValue!, forKey: hashedKey)
+            expiryTable?.set(newValue?.expiry, forKey: hashedKey.toString())
+            storage.setObject((newValue?.val!)!, forKey: hashedKey)
             expiryTable?.synchronize()
         }
     }
-
-
 }

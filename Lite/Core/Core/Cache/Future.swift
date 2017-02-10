@@ -8,23 +8,18 @@
 
 import Foundation
 
-public class Future<T> : NSObject, NSCoding {
+public class Future<T> : NSObject {
 
     public required init?(coder aDecoder: NSCoder) {
         internalValue = aDecoder.decodeObject(forKey: "internal_value") as? T
     }
-//
-//    public func encode(with aCoder: NSCoder) {
-//        aCoder.encode(internalValue, forKey: "internal_value")
-//    }
 
-    public func encode(with aCoder: NSCoder) {
-        aCoder.encode(internalValue, forKey: "internal_value")
-    }
-
+    var expiry: Date?
     fileprivate var internalValue : T?
-    init(_ value: T?) {
+    
+    init(_ value: T?, cacheExpiry: Date) {
         internalValue = value
+        expiry = cacheExpiry
     }
 }
 
@@ -32,5 +27,4 @@ public extension Future {
     public var val: T? {
         get { return internalValue }
     }
-
 }

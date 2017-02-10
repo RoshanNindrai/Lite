@@ -52,8 +52,9 @@ class WebServiceTest : CoreTests {
 
         let asyncExpectation = expectation(description: "Making GET Call")
 
-        let test = Resource<DummyGetResource>(url: URL(string:"https://httpbin.org/get")!,
+        let test = Resource<DummyGetResource>(url: URL(string:"https://httpbin.org/cache")!,
                                               type:.GET,
+                                              cacheExpiry:.Seconds(10),
                                               parseJSON: {json in
                                                 guard let dictionaries = json as? JSONDictionary else { return nil }
                                                 return DummyGetResource.init(dataDict: dictionaries)
@@ -70,8 +71,6 @@ class WebServiceTest : CoreTests {
             print(error ?? "network GET test passed")
         }
 
-        
     }
-
 
 }

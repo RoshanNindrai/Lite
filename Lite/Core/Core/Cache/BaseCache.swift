@@ -11,11 +11,4 @@ import Foundation
 public  class BaseCache<K, V>: NSObject {
     public typealias Key = K
     public typealias Value = V
-    public var expiry: CacheExpiry?
-
-    override init() {
-        super.init()
-        expiry = .Never
-    }
-
 }

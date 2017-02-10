@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class Webservice {
+final public class Webservice: NSObject {
 
     //  The configuration for the session that is to be handled
     fileprivate var sessionConfig : URLSessionConfiguration = .default {
@@ -19,8 +19,9 @@ final public class Webservice {
     //  shared object for performing all WebService calls
     static let shared : Webservice = Webservice()
 
-    init() {
-        session = URLSession(configuration: sessionConfig)
+    override init() {
+        super.init()
+        session = URLSession.init(configuration: sessionConfig)
     }
 }
 
@@ -31,6 +32,7 @@ public extension Webservice {
     /// - parameter config: configuration for the session configuration
     func sessionConfiguration(config : URLSessionConfiguration) {
         sessionConfig = config
+        sessionConfig.requestCachePolicy = .returnCacheDataElseLoad
     }
 
 }
@@ -44,16 +46,16 @@ public extension Webservice {
     /// - parameter completion: The completion handler takes in a resource
     class func load<A>( resource: Resource<A>, completion: @escaping (Response<A>) -> ()) -> URLSessionTask? {
 
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let request = URLRequest.init(resource: resource)
         let task = shared.session?.dataTask(with: request) { data, response, error in
-
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             if let data = data {
                 completion(.success(resource.parse(data), response, data))
             } else if let error = error {
                 completion(.failure(error))
             }
         }
-
         task?.resume()
         return task
 

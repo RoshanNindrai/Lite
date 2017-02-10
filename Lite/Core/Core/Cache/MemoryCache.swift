@@ -25,17 +25,15 @@ public final class MemoryCache<K: StringConvertable, V: AnyObject>: BaseCache<K,
 extension MemoryCache: CachePolicy {
 
     public func get(key: Key) -> Future<V>? {
-        if let data = storage?[key, expiry!] {
-            return Future<V>(data)
+        if let data = storage?[key] {
+            return data
         }
 
         return nil
     }
 
-    public func set(key: Key, value: V, expiry: CacheExpiry) {
-        self.expiry = expiry
-        storage?[key, self.expiry!] = value
-
+    public func set(key: Key, value: V, expiry: Date? = CacheExpiry.Seconds(5).time) {
+        storage?[key] = Future<V>.init(value, cacheExpiry: expiry!)
     }
 
 }

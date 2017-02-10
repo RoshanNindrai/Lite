@@ -21,26 +21,31 @@ struct FileStorage {
         prepareFS()
     }
 
-    subscript(key: String, expiry: CacheExpiry) -> Data? {
+    subscript(key: String) -> Future<Data>? {
         get {
             let cacheFilePath = baseURL.appendingPathComponent(key.sha1())
-            if let expiryDate = expiryTable?.value(forKey: key.sha1()) as? Date {
-                let timeSinceLastCache = Date().timeIntervalSince(expiryDate)
-                if timeSinceLastCache >= expiry.time {
+            if let expiryTimeInterval = expiryTable?.value(forKey: key.sha1()) as? Date {
+                let timeSinceLastCache = Date()
+                if timeSinceLastCache.compare(expiryTimeInterval) == .orderedDescending {
                     if (FileManager.default.fileExists(atPath: cacheFilePath.path)) {
                         try! FileManager.default.removeItem(at: cacheFilePath)
                         return nil
                     }
-
                 }
             }
             let url = baseURL.appendingPathComponent(key.sha1())
-            return try? Data(contentsOf: url)
+            if let data = try? Data(contentsOf: url) {
+                let expiryTimeInterval = expiryTable?.value(forKey: key.sha1()) ?? CacheExpiry.Never.time
+                return Future<Data>(data, cacheExpiry: expiryTimeInterval as! Date)
+            }
+
+            return nil
+
         }
         set {
-            expiryTable?.set(Date(), forKey: key.sha1())
+            expiryTable?.set(newValue?.expiry, forKey: key.sha1())
             let url = baseURL.appendingPathComponent(key.sha1())
-            _ = try! newValue?.write(to: url)
+            _ = try! newValue?.val!.write(to: url)
         }
     }
 
