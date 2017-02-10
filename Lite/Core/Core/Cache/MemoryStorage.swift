@@ -38,13 +38,13 @@ public extension MemoryStorage {
             }
 
             if let cachedData = storage.object(forKey: hashedKey) {
-                return Future<Value>(cachedData, cacheExpiry: expiryTable?.value(forKey: hashedKey.toString()) as! Date)
+                return Future<Value>(cachedData, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
             }
             return nil
         }
         set {
             let hashedKey = NSString(string: key.toString().sha1())
-            expiryTable?.set(newValue?.expiry, forKey: hashedKey.toString())
+            expiryTable?.set(newValue?.expiry?.time, forKey: hashedKey.toString())
             storage.setObject((newValue?.val!)!, forKey: hashedKey)
             expiryTable?.synchronize()
         }

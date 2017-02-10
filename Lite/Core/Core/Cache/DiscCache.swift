@@ -31,7 +31,7 @@ extension DiscCache : CachePolicy {
         return nil
     }
 
-    public func set(key: K, value: V, expiry: Date? = CacheExpiry.Seconds(5).time) {
+    public func set(key: K, value: V, expiry: CacheExpiry? = CacheExpiry.Seconds(5)) {
         let data = NSKeyedArchiver.archivedData(withRootObject: value)
         storage?[key.toString()] = Future<Data>(data, cacheExpiry: expiry!)
     }

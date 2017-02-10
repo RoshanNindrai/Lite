@@ -32,7 +32,7 @@ extension MemoryCache: CachePolicy {
         return nil
     }
 
-    public func set(key: Key, value: V, expiry: Date? = CacheExpiry.Seconds(5).time) {
+    public func set(key: Key, value: V, expiry: CacheExpiry? = CacheExpiry.Seconds(5)) {
         storage?[key] = Future<V>.init(value, cacheExpiry: expiry!)
     }
 

@@ -36,14 +36,14 @@ struct FileStorage {
             let url = baseURL.appendingPathComponent(key.sha1())
             if let data = try? Data(contentsOf: url) {
                 let expiryTimeInterval = expiryTable?.value(forKey: key.sha1()) ?? CacheExpiry.Never.time
-                return Future<Data>(data, cacheExpiry: expiryTimeInterval as! Date)
+                return Future<Data>(data, cacheExpiry: .Date(expiryTimeInterval as! Date))
             }
 
             return nil
 
         }
         set {
-            expiryTable?.set(newValue?.expiry, forKey: key.sha1())
+            expiryTable?.set(newValue?.expiry!.time, forKey: key.sha1())
             let url = baseURL.appendingPathComponent(key.sha1())
             _ = try! newValue?.val!.write(to: url)
         }

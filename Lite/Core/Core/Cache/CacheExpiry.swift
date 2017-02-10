@@ -30,7 +30,7 @@ public extension CacheExpiry {
             let days = days * 24 * 60 * 60
             return Foundation.Date().addingTimeInterval(TimeInterval(days))
         case .Date(let date):
-            return Foundation.Date().addingTimeInterval(date.timeIntervalSince(Foundation.Date()))
+            return date
         }
     }
 }

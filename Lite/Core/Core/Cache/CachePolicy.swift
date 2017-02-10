@@ -16,7 +16,7 @@ public protocol CachePolicy {
     associatedtype Value
 
     func get(key: Key) -> Future<Value>?
-    func set(key: Key, value: Value, expiry : Date?)
+    func set(key: Key, value: Value, expiry : CacheExpiry?)
     
 }
 

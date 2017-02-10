@@ -14,10 +14,10 @@ public class Future<T> : NSObject {
         internalValue = aDecoder.decodeObject(forKey: "internal_value") as? T
     }
 
-    var expiry: Date?
+    var expiry: CacheExpiry?
     fileprivate var internalValue : T?
     
-    init(_ value: T?, cacheExpiry: Date) {
+    init(_ value: T?, cacheExpiry: CacheExpiry) {
         internalValue = value
         expiry = cacheExpiry
     }

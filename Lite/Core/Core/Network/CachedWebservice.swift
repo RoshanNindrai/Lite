@@ -32,7 +32,7 @@ public final class CachedWebservice {
                     completion(.failure(error))
                 case let .success(data):
                     if let serverResponse = data.2 {
-                        self.cache.set(key: resource.url, value: NSData(data: serverResponse), expiry: (resource.cacheExpiry?.time)!)
+                        self.cache.set(key: resource.url, value: NSData(data: serverResponse), expiry: resource.cacheExpiry)
                         completion(.success(data.0, data.1, serverResponse))
                     }
             }
