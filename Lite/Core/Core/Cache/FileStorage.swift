@@ -21,7 +21,7 @@ struct FileStorage {
         prepareFS()
     }
 
-    subscript(key: String) -> Future<Data>? {
+    subscript(key: String) -> CacheResponse<Data>? {
         get {
             let cacheFilePath = baseURL.appendingPathComponent(key.sha1())
             if let expiryTimeInterval = expiryTable?.value(forKey: key.sha1()) as? Date {
@@ -36,7 +36,7 @@ struct FileStorage {
             let url = baseURL.appendingPathComponent(key.sha1())
             if let data = try? Data(contentsOf: url) {
                 let expiryTimeInterval = expiryTable?.value(forKey: key.sha1()) ?? CacheExpiry.Never.time
-                return Future<Data>(data, cacheExpiry: .Date(expiryTimeInterval as! Date))
+                return CacheResponse<Data>(data, cacheExpiry: .Date(expiryTimeInterval as! Date))
             }
 
             return nil

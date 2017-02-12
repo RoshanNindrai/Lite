@@ -60,4 +60,30 @@ public extension Webservice {
         return task
 
     }
+
+
+    /// This method is used to perform the url request and call the completion
+    /// handler with the aquired resources
+    ///
+    /// - parameter resource:   The request resource that was asked by the user
+    /// - parameter completion: The completion handler takes in a resource
+    class func load<A>( resource: Resource<A>) -> Future<A> {
+
+        return Future { completion in
+
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            let request = URLRequest.init(resource: resource)
+            shared.session?.dataTask(with: request) { data, response, error in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                if let data = data {
+                    completion(.success(resource.parse(data), response, data))
+                } else if let error = error {
+                    completion(.failure(error))
+                }
+                }.resume()
+
+        }
+        
+    }
+
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public class BasicCache<K: StringConvertable, V> : BaseCache<K, V> {
 
-    public typealias getClosure = (_ Key: K) -> Future<V>?
+    public typealias getClosure = (_ Key: K) -> CacheResponse<V>?
     public typealias setClosure = (_ Key: K, _ value: V, _ expiry: CacheExpiry) -> Void
 
     public typealias Key = K
@@ -27,7 +27,7 @@ public class BasicCache<K: StringConvertable, V> : BaseCache<K, V> {
 }
 
 extension BasicCache : CachePolicy {
-    public func get(key: K) -> Future<V>? {
+    public func get(key: K) -> CacheResponse<V>? {
         return getC(key)
     }
 
@@ -35,7 +35,7 @@ extension BasicCache : CachePolicy {
         setC(key, value, expiry!)
     }
 
-    public func get<A>(resource: Resource<A>) -> Future<V>? {
+    public func get<A>(resource: Resource<A>) -> CacheResponse<V>? {
         return get(key: resource.url as! K)
     }
 }

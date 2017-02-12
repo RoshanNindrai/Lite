@@ -24,7 +24,7 @@ public final class MemoryCache<K: StringConvertable, V: AnyObject>: BaseCache<K,
 
 extension MemoryCache: CachePolicy {
 
-    public func get(key: Key) -> Future<V>? {
+    public func get(key: Key) -> CacheResponse<V>? {
         if let data = storage?[key] {
             return data
         }
@@ -33,7 +33,7 @@ extension MemoryCache: CachePolicy {
     }
 
     public func set(key: Key, value: V, expiry: CacheExpiry? = CacheExpiry.Seconds(5)) {
-        storage?[key] = Future<V>.init(value, cacheExpiry: expiry!)
+        storage?[key] = CacheResponse<V>.init(value, cacheExpiry: expiry!)
     }
 
 }

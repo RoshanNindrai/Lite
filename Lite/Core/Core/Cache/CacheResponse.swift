@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Future<T> : NSObject {
+public final class CacheResponse<T> : NSObject {
 
     public required init?(coder aDecoder: NSCoder) {
         internalValue = aDecoder.decodeObject(forKey: "internal_value") as? T
@@ -23,7 +23,7 @@ public class Future<T> : NSObject {
     }
 }
 
-public extension Future {
+public extension CacheResponse {
     public var val: T? {
         get { return internalValue }
     }

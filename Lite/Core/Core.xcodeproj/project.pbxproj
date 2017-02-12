@@ -80,6 +80,7 @@
 		AB2D52EB1E41A431005EC446 /* MemoryCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2D52E91E41A3E7005EC446 /* MemoryCache.swift */; };
 		AB2DB8531E41A27500E46816 /* BasicCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2DB8521E41A27500E46816 /* BasicCache.swift */; };
 		AB61178E1E4D603800E6C0A7 /* CommandBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61178D1E4D603800E6C0A7 /* CommandBus.swift */; };
+		AB61180B1E4EE44900E6C0A7 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61180A1E4EE44900E6C0A7 /* Future.swift */; };
 		AB641C8B1E41B5DB006535A7 /* DiscCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB641C8A1E41B5DB006535A7 /* DiscCache.swift */; };
 		AB955CD21E1B2BE0008014E6 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB955CC81E1B2BE0008014E6 /* Core.framework */; };
 		AB955CD71E1B2BE0008014E6 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CD61E1B2BE0008014E6 /* CoreTests.swift */; };
@@ -94,7 +95,7 @@
 		AB955CF51E1B2C4E008014E6 /* Dictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CF11E1B2C4E008014E6 /* Dictionary+Utils.swift */; };
 		AB98E47F1E4019A3003E5FC0 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E47E1E4019A3003E5FC0 /* Response.swift */; };
 		AB98E48D1E4177B4003E5FC0 /* CachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E48C1E4177B4003E5FC0 /* CachePolicy.swift */; };
-		AB98E48F1E4178BD003E5FC0 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E48E1E4178BD003E5FC0 /* Future.swift */; };
+		AB98E48F1E4178BD003E5FC0 /* CacheResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E48E1E4178BD003E5FC0 /* CacheResponse.swift */; };
 		AB98E4941E4180A3003E5FC0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E4931E4180A3003E5FC0 /* Cache.swift */; };
 		ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */; };
 /* End PBXBuildFile section */
@@ -183,6 +184,7 @@
 		AB2D52E91E41A3E7005EC446 /* MemoryCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MemoryCache.swift; path = Cache/MemoryCache.swift; sourceTree = "<group>"; };
 		AB2DB8521E41A27500E46816 /* BasicCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicCache.swift; path = Cache/BasicCache.swift; sourceTree = "<group>"; };
 		AB61178D1E4D603800E6C0A7 /* CommandBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CommandBus.swift; path = commandbus/CommandBus.swift; sourceTree = "<group>"; };
+		AB61180A1E4EE44900E6C0A7 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		AB641C8A1E41B5DB006535A7 /* DiscCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscCache.swift; path = Cache/DiscCache.swift; sourceTree = "<group>"; };
 		AB955CC81E1B2BE0008014E6 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB955CCB1E1B2BE0008014E6 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
@@ -200,7 +202,7 @@
 		AB955CF11E1B2C4E008014E6 /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Utils.swift"; sourceTree = "<group>"; };
 		AB98E47E1E4019A3003E5FC0 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		AB98E48C1E4177B4003E5FC0 /* CachePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CachePolicy.swift; path = Cache/CachePolicy.swift; sourceTree = "<group>"; };
-		AB98E48E1E4178BD003E5FC0 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Future.swift; path = Cache/Future.swift; sourceTree = "<group>"; };
+		AB98E48E1E4178BD003E5FC0 /* CacheResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheResponse.swift; path = Cache/CacheResponse.swift; sourceTree = "<group>"; };
 		AB98E4931E4180A3003E5FC0 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = Cache/Cache.swift; sourceTree = "<group>"; };
 		ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableURLRequest+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -387,6 +389,7 @@
 				AB955CE51E1B2C1A008014E6 /* Service.swift */,
 				AB98E47E1E4019A3003E5FC0 /* Response.swift */,
 				AB26BB851E45EBAB00CD7C58 /* CachedWebservice.swift */,
+				AB61180A1E4EE44900E6C0A7 /* Future.swift */,
 				AB955CE61E1B2C1A008014E6 /* Utils */,
 			);
 			path = Network;
@@ -427,7 +430,7 @@
 				AB26BAF91E4310D400CD7C58 /* CryptoSwift */,
 				AB98E48B1E4176B7003E5FC0 /* protocol */,
 				AB26BB7E1E44B2FE00CD7C58 /* CacheExpiry.swift */,
-				AB98E48E1E4178BD003E5FC0 /* Future.swift */,
+				AB98E48E1E4178BD003E5FC0 /* CacheResponse.swift */,
 				AB26BA6C1E42E4EF00CD7C58 /* FileStorage.swift */,
 				AB26BB811E45703A00CD7C58 /* MemoryStorage.swift */,
 				AB26BB871E462B8900CD7C58 /* CacheFactory.swift */,
@@ -635,7 +638,8 @@
 				AB26BB561E4310D400CD7C58 /* Blowfish+Foundation.swift in Sources */,
 				AB26BB551E4310D400CD7C58 /* AES+Foundation.swift in Sources */,
 				AB26BB731E4310D400CD7C58 /* String+Extension.swift in Sources */,
-				AB98E48F1E4178BD003E5FC0 /* Future.swift in Sources */,
+				AB61180B1E4EE44900E6C0A7 /* Future.swift in Sources */,
+				AB98E48F1E4178BD003E5FC0 /* CacheResponse.swift in Sources */,
 				AB26BB6D1E4310D400CD7C58 /* RandomAccessCryptor.swift in Sources */,
 				AB26BB461E4310D400CD7C58 /* CTR.swift in Sources */,
 				ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */,

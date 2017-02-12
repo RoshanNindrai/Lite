@@ -26,7 +26,7 @@ public struct MemoryStorage<K: StringConvertable, V: AnyObject> {
 
 public extension MemoryStorage {
 
-    subscript(key: Key) -> Future<Value>? {
+    subscript(key: Key) -> CacheResponse<Value>? {
         get {
             let hashedKey = NSString(string: key.toString().sha1())
             if let expiryTimeInterval = expiryTable?.value(forKey: key.toString().sha1()) as? Date {
@@ -38,7 +38,7 @@ public extension MemoryStorage {
             }
 
             if let cachedData = storage.object(forKey: hashedKey) {
-                return Future<Value>(cachedData, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
+                return CacheResponse<Value>(cachedData, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
             }
             return nil
         }
