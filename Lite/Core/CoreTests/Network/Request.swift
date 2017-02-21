@@ -42,23 +42,21 @@ class NetworkRequestTest: CoreTests {
         let test = Resource<DummyGetResource>(url: URL(string:"https://httpbin.org/get")!,
                                               type:.GET,
                                               parseJSON: {json in
-                                                guard let dictionaries = json as? JSONDictionary else { return nil }
-                                                return DummyGetResource.init(dataDict: dictionaries)
+                                                guard let dataDict = json as? JSONDictionary else { return nil }
+                                                return DummyGetResource.init(dataDict: dataDict)
         })
 
         Webservice
             .load(resource: test).flatMap { response in
                 Webservice.load(resource: test)
-            }.onResult { result in
+            }.onResult { _ in
                 asyncExpectation.fulfill()
             }
 
         waitForExpectations(timeout: 10.0) { (error) in
             print(error ?? "network GET test passed")
         }
-        
     }
-
 
     func testNetworkPostRequest() {
 

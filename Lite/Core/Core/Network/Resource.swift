@@ -18,7 +18,6 @@ public struct Resource<R> {
     let parse : (Data) -> R?
     let cacheExpiry : CacheExpiry?
     var header: [String:String]?
-
 }
 
 public extension Resource {
@@ -38,6 +37,7 @@ public extension Resource {
         self.url = url
         self.header = header
         self.cacheExpiry = cacheExpiry
+
         parse = { data in
             let json = try? JSONSerialization.jsonObject(with: data,
                                                          options : [])

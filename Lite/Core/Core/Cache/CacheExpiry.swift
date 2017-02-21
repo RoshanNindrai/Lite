@@ -20,7 +20,7 @@ public extension CacheExpiry {
     var time : Date {
         switch self {
         case .Never:
-            return Foundation.Date().addingTimeInterval(TimeInterval(DEFAULT_EXPIRY_SIZE))
+            return Foundation.Date().addingTimeInterval(TimeInterval(DEFAULTEXPIRYSIZE))
         case .Seconds(let seconds):
             return Foundation.Date().addingTimeInterval(TimeInterval(seconds))
         case .Hours(let hours):

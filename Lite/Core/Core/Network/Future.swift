@@ -25,7 +25,8 @@ public class Future<A> {
         callbacks = []
     }
 
-    @discardableResult public func onResult(_ callback:(@escaping (Response<A>) -> ())) -> Future<A> {
+    @discardableResult
+    public func onResult(_ callback:(@escaping (Response<A>) -> ())) -> Future<A> {
         if let result = cached {
             callback(result)
         } else {
@@ -34,7 +35,8 @@ public class Future<A> {
         return self
     }
 
-    @discardableResult public func flatMap<B>(_ transform: @escaping ((A?, URLResponse?, Data?)) -> Future<B>) -> Future<B> {
+    @discardableResult
+    public func flatMap<B>(_ transform: @escaping ((A?, URLResponse?, Data?)) -> Future<B>) -> Future<B> {
         return Future<B> { completion in
             self.onResult { result in
                 switch result {

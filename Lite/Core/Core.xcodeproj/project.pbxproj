@@ -87,7 +87,7 @@
 		AB955CD91E1B2BE0008014E6 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = AB955CCB1E1B2BE0008014E6 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB955CE81E1B2C1A008014E6 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CE31E1B2C1A008014E6 /* Request.swift */; };
 		AB955CE91E1B2C1A008014E6 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CE41E1B2C1A008014E6 /* Resource.swift */; };
-		AB955CEA1E1B2C1A008014E6 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CE51E1B2C1A008014E6 /* Service.swift */; };
+		AB955CEA1E1B2C1A008014E6 /* Webservice.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CE51E1B2C1A008014E6 /* Webservice.swift */; };
 		AB955CEB1E1B2C1A008014E6 /* Dictionary+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CE71E1B2C1A008014E6 /* Dictionary+Utils.swift */; };
 		AB955CF21E1B2C4E008014E6 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CED1E1B2C4E008014E6 /* Request.swift */; };
 		AB955CF31E1B2C4E008014E6 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CEE1E1B2C4E008014E6 /* Resource.swift */; };
@@ -194,7 +194,7 @@
 		AB955CD81E1B2BE0008014E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AB955CE31E1B2C1A008014E6 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		AB955CE41E1B2C1A008014E6 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
-		AB955CE51E1B2C1A008014E6 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		AB955CE51E1B2C1A008014E6 /* Webservice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservice.swift; sourceTree = "<group>"; };
 		AB955CE71E1B2C1A008014E6 /* Dictionary+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Utils.swift"; sourceTree = "<group>"; };
 		AB955CED1E1B2C4E008014E6 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		AB955CEE1E1B2C4E008014E6 /* Resource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 			children = (
 				AB955CE31E1B2C1A008014E6 /* Request.swift */,
 				AB955CE41E1B2C1A008014E6 /* Resource.swift */,
-				AB955CE51E1B2C1A008014E6 /* Service.swift */,
+				AB955CE51E1B2C1A008014E6 /* Webservice.swift */,
 				AB98E47E1E4019A3003E5FC0 /* Response.swift */,
 				AB26BB851E45EBAB00CD7C58 /* CachedWebservice.swift */,
 				AB61180A1E4EE44900E6C0A7 /* Future.swift */,
@@ -477,6 +477,7 @@
 				AB955CC41E1B2BE0008014E6 /* Frameworks */,
 				AB955CC51E1B2BE0008014E6 /* Headers */,
 				AB955CC61E1B2BE0008014E6 /* Resources */,
+				AB99DBFE1E54CE73009CBA2F /* Linter */,
 			);
 			buildRules = (
 			);
@@ -563,6 +564,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AB99DBFE1E54CE73009CBA2F /* Linter */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Linter;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#if which swiftlint >/dev/null; then\n#swiftlint\n#else\n#echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AB955CC31E1B2BE0008014E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -609,7 +627,7 @@
 				AB26BB641E4310D400CD7C58 /* NoPadding.swift in Sources */,
 				AB26BB421E4310D400CD7C58 /* BlockModeOptions.swift in Sources */,
 				AB26BB431E4310D400CD7C58 /* BlockModeWorker.swift in Sources */,
-				AB955CEA1E1B2C1A008014E6 /* Service.swift in Sources */,
+				AB955CEA1E1B2C1A008014E6 /* Webservice.swift in Sources */,
 				AB26BA6D1E42E4EF00CD7C58 /* FileStorage.swift in Sources */,
 				AB26BB761E4310D400CD7C58 /* UInt64+Extension.swift in Sources */,
 				AB26BB6A1E4310D400CD7C58 /* PKCS7.swift in Sources */,

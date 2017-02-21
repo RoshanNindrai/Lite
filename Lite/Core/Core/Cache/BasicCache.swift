@@ -10,16 +10,16 @@ import Foundation
 
 public class BasicCache<K: StringConvertable, V> : BaseCache<K, V> {
 
-    public typealias getClosure = (_ Key: K) -> CacheResponse<V>?
-    public typealias setClosure = (_ Key: K, _ value: V, _ expiry: CacheExpiry) -> Void
+    public typealias GetClosure = (_ Key: K) -> CacheResponse<V>?
+    public typealias SetClosure = (_ Key: K, _ value: V, _ expiry: CacheExpiry) -> Void
 
     public typealias Key = K
     public typealias Value = V
 
-    fileprivate var getC : getClosure
-    fileprivate var setC : setClosure
+    fileprivate var getC : GetClosure
+    fileprivate var setC : SetClosure
 
-    public init(getC: @escaping getClosure, setC: @escaping setClosure) {
+    public init(getC: @escaping GetClosure, setC: @escaping SetClosure) {
         self.getC = getC
         self.setC = setC
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let DEFAULT_EXPIRY_SIZE = 365 * 24 * 60 * 60
+let DEFAULTEXPIRYSIZE = 365 * 24 * 60 * 60
 
 public protocol CachePolicy {
 

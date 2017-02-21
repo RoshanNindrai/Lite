@@ -19,14 +19,13 @@ public final class CachedWebservice {
         self.cache = cache
     }
 
-    public func load<A>(resource: Resource<A>, completion: @escaping (Response<A>) -> ()) -> URLSessionTask? {
+    public func load<A>(resource: Resource<A>, completion: @escaping (Response<A>) -> ()){
         /// If the cache has no data to be returned immediately then we do network call
         if let result = cache.get(resource: resource) {
             completion(.success(resource.parse(result.val as! Data), nil, nil))
-            return nil
         }
 
-        return Webservice.load(resource: resource, completion: { result in
+        Webservice.load(resource: resource, completion: { result in
             switch result {
                 case let .failure(error):
                     completion(.failure(error))
