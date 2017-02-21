@@ -105,20 +105,9 @@ public extension Webservice {
     /// - parameter resource:   The request resource that was asked by the user
     /// - parameter completion: The completion handler takes in a resource
     class func load<A>(_ session: URLSession? = shared.session, resource: Resource<A>) -> Future<A> {
-
         return Future { completion in
-
-            let request = URLRequest(resource: resource)
-            session?.dataTask(with: request) { data, response, error in
-                if let data = data {
-                    completion(.success(resource.parse(data), response, data))
-                } else if let error = error {
-                    completion(.failure(error))
-                }
-                }.resume()
-
+            load(resource: resource, completion: completion)
         }
-        
     }
 
 }

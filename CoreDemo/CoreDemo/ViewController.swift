@@ -50,7 +50,7 @@ class ViewController: UIViewController {
                                                 return DummyGetResource.init(dataDict: dictionaries)
         })
 
-        _ = CachedWebservice().load(resource: test, completion: { result in
+        CachedWebservice().load(resource: test, completion: { result in
             if case let Response.success(data, _, _) = result {
                 print(data?.origin ?? "No origin value")
             }

@@ -13,7 +13,7 @@ public class Future<A> {
     var cached: Response<A>?
 
     init(_ compute: (@escaping (Response<A>) -> ()) -> ()) {
-        compute(self.send)
+        compute(send)
     }
 
     private func send(_ result: Response<A>) {
@@ -38,7 +38,7 @@ public class Future<A> {
     @discardableResult
     public func flatMap<B>(_ transform: @escaping ((A?, URLResponse?, Data?)) -> Future<B>) -> Future<B> {
         return Future<B> { completion in
-            self.onResult { result in
+            onResult { result in
                 switch result {
                     case .success(let value):
                         transform(value).onResult(completion)
