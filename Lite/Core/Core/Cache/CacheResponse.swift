@@ -17,7 +17,7 @@ public final class CacheResponse<T> : NSObject {
     var expiry: CacheExpiry?
     fileprivate var internalValue : T?
     
-    init(_ value: T?, cacheExpiry: CacheExpiry) {
+    init(_ value: T?, cacheExpiry: CacheExpiry = CacheExpiry.Seconds(5)) {
         internalValue = value
         expiry = cacheExpiry
     }

@@ -26,27 +26,29 @@ public struct MemoryStorage<K: StringConvertable, V: AnyObject> {
 
 public extension MemoryStorage {
 
-    subscript(key: Key) -> CacheResponse<Value>? {
+    subscript(key: Key) -> CacheResponse<Value> {
         get {
             let hashedKey = NSString(string: key.toString().sha1())
             if let expiryTimeInterval = expiryTable?.value(forKey: key.toString().sha1()) as? Date {
                 let timeSinceLastCache = Date()
                 if timeSinceLastCache.compare(expiryTimeInterval)  == .orderedDescending {
                     storage.removeObject(forKey: hashedKey)
-                    return nil
+                     return CacheResponse<Value>(nil, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
                 }
             }
 
             if let cachedData = storage.object(forKey: hashedKey) {
                 return CacheResponse<Value>(cachedData, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
             }
-            return nil
+            return CacheResponse<Value>(nil, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
         }
         set {
-            let hashedKey = NSString(string: key.toString().sha1())
-            expiryTable?.set(newValue?.expiry?.time, forKey: hashedKey.toString())
-            storage.setObject((newValue?.val!)!, forKey: hashedKey)
-            expiryTable?.synchronize()
+            if let toSaveData = newValue.val {
+                let hashedKey = NSString(string: key.toString().sha1())
+                expiryTable?.set(newValue.expiry?.time, forKey: hashedKey.toString())
+                storage.setObject(toSaveData, forKey: hashedKey)
+                expiryTable?.synchronize()
+            }
         }
     }
 }

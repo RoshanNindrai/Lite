@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class Future<A> {
-    var callbacks:[(Response<A>) -> ()] = []
-    var cached: Response<A>?
+public class Future<T> {
+    var callbacks:[(T) -> ()] = []
+    var cached: T?
 
-    init(_ compute: (@escaping (Response<A>) -> ()) -> ()) {
+    init(_ compute: (@escaping (T) -> ()) -> ()) {
         compute(send)
     }
 
-    private func send(_ result: Response<A>) {
+    private func send(_ result: T) {
         assert(cached == nil)
         cached = result
         callbacks.forEach { callback in
@@ -26,7 +26,7 @@ public class Future<A> {
     }
 
     @discardableResult
-    public func onResult(_ callback:(@escaping (Response<A>) -> ())) -> Future<A> {
+    public func onResult(_ callback:(@escaping (T) -> ())) -> Future<T> {
         if let result = cached {
             callback(result)
         } else {
@@ -36,18 +36,12 @@ public class Future<A> {
     }
 
     @discardableResult
-    public func flatMap<B>(_ transform: @escaping ((A?, URLResponse?, Data?)) -> Future<B>) -> Future<B> {
+    public func flatMap<B>(_ transform: @escaping (T) -> Future<B>) -> Future<B> {
         return Future<B> { completion in
             onResult { result in
-                switch result {
-                    case .success(let value):
-                        transform(value).onResult(completion)
-                    case .failure(let error):
-                        completion(.failure(error))
-                }
+                transform(result).onResult(completion)
             }
         }
     }
 
 }
-

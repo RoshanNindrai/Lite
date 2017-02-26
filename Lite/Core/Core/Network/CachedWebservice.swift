@@ -21,8 +21,10 @@ public final class CachedWebservice {
 
     public func load<A>(resource: Resource<A>, completion: @escaping (Response<A>) -> ()){
         /// If the cache has no data to be returned immediately then we do network call
-        if let result = cache.get(resource: resource) {
-            completion(.success(resource.parse(result.val as! Data), nil, nil))
+        let result = cache.get(resource: resource)
+
+        result.onResult { cachedData in
+            completion(.success(resource.parse(cachedData.val as! Data), nil, nil))
         }
 
         Webservice.load(resource: resource, completion: { result in
@@ -38,10 +40,10 @@ public final class CachedWebservice {
         })
     }
 
-    public func load<A>(resource: Resource<A>) -> Future<A>{
+    public func load<A>(resource: Resource<A>) -> Future<A> {
         /// If the cache has no data to be returned immediately then we do network call
         return Future { completion in
-            load(resource: resource, completion: completion)
+            
         }
     }
 

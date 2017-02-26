@@ -17,19 +17,17 @@ public final class MemoryCache<K: StringConvertable, V: AnyObject>: BaseCache<K,
 
     public init(capacity : Int = DEFAULT_MEMORY_SIZE) {
         super.init()
-        storage = MemoryStorage<Key, Value>()
+        storage = MemoryStorage<Key, Value>(capacity: capacity)
     }
 
 }
 
 extension MemoryCache: CachePolicy {
 
-    public func get(key: Key) -> CacheResponse<V>? {
-        if let data = storage?[key] {
-            return data
+    public func get(key: Key) -> Future<CacheResponse<V>> {
+        return Future<CacheResponse<V>> { completion in
+            completion((storage?[key])!)
         }
-
-        return nil
     }
 
     public func set(key: Key, value: V, expiry: CacheExpiry? = CacheExpiry.Seconds(5)) {

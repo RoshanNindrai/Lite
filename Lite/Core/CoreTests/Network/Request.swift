@@ -47,9 +47,7 @@ class NetworkRequestTest: CoreTests {
         })
 
         Webservice
-            .load(resource: test).flatMap { response in
-                Webservice.load(resource: test)
-            }.onResult { _ in
+            .load(resource: test).onResult { _ in
                 asyncExpectation.fulfill()
             }
 

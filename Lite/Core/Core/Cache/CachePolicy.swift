@@ -15,7 +15,7 @@ public protocol CachePolicy {
     associatedtype Key: StringConvertable
     associatedtype Value
 
-    func get(key: Key) -> CacheResponse<Value>?
+    func get(key: Key) -> Future<CacheResponse<Value>>
     func set(key: Key, value: Value, expiry : CacheExpiry?)
     
 }
@@ -24,13 +24,16 @@ public protocol CachePolicy {
 public extension CachePolicy {
     func compose<B: CachePolicy>(_ cache: B) -> BasicCache<Key, Value> where B.Key == Key, B.Value == Value {
         return BasicCache(getC: { key in
-            if let data = self.get(key: key) {  return data }
-            else {
-                if let cachedData = cache.get(key: key) {
-                    self.set(key: key, value: cachedData.val!, expiry: cachedData.expiry!)
-                    return cachedData
-                }
-                return nil
+            return self.get(key: key)
+                       .flatMap { cacheResponse in
+                        if cacheResponse.val != nil {
+                            return Future<CacheResponse<Value>> { completion in
+                                completion(cacheResponse)
+                            }
+                        }
+                        else {
+                            return cache.get(key: key)
+                        }
             }
         }, setC: {key, value, expiry in
             self.set(key: key, value: value, expiry: expiry)

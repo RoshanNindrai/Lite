@@ -37,7 +37,6 @@ extension RequestType {
 
 }
 
-
 extension RequestType {
 
     func map<B>(_ function: (Body) -> B) -> RequestType<B> {

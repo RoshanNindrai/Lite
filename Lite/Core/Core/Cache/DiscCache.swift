@@ -22,13 +22,17 @@ public final class DiscCache<K: StringConvertable, V>: BaseCache<K, V> {
 
 extension DiscCache : CachePolicy {
 
-    public func get(key: K) -> CacheResponse<V>? {
-        if let archievedData = storage?[key.toString()] {
-            let unArchivedData = NSKeyedUnarchiver.unarchiveObject(with: archievedData.val!)
-            return CacheResponse<V>(unArchivedData as? V, cacheExpiry: archievedData.expiry!)
+    public func get(key: K) -> Future<CacheResponse<Value>> {
+        let archievedData = storage?[key.toString()]
+        return Future<CacheResponse<Value>> {completion in
+            if let archivedValue = archievedData!.val {
+                let unArchivedData = NSKeyedUnarchiver.unarchiveObject(with: archivedValue)
+                completion(CacheResponse<V>(unArchivedData as? V, cacheExpiry: archievedData!.expiry!))
+            }
+            else {
+                completion(CacheResponse<V>(nil, cacheExpiry: archievedData!.expiry!))
+            }
         }
-
-        return nil
     }
 
     public func set(key: K, value: V, expiry: CacheExpiry? = CacheExpiry.Seconds(5)) {
