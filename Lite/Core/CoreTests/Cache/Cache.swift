@@ -17,14 +17,37 @@ class BasicCacheTest : CoreTests {
         let combined = memoryCache.compose(discCache)
         combined.set(key: "cache_key", value: "No No", expiry: .Seconds(5000))
         memoryCache.get(key: "cache_key").onResult { response in
-            print("IN MEMORY")
-            print(response.val ?? "No Cached Data")
+            assert(response.val != nil)
+            assert(response.val == "No No")
         }
         discCache.get(key: "cache_key").onResult { response in
-            print("IN DISC")
-            print(response.val ?? "No Cached Data")
+            assert(response.val != nil)
+            assert(response.val == "No No")
+        }
+    }
+
+    func testPooledCache() {
+
+        let asycexpectation = expectation(description: "Pool test expectation")
+
+        let memoryCache = MemoryCache<String, NSString>()
+        let discCache = DiscCache<String, NSString>()
+        let combined = memoryCache.compose(discCache)
+        let pooledCache = PooledCache(combined)
+        combined.set(key: "cache_key", value: "No No", expiry: .Seconds(5000))
+        pooledCache.get(key: "cache_key").onResult { response in
+            assert(response.val != nil)
+        }
+        DispatchQueue.global().async {
+            pooledCache.get(key: "cache_key").onResult { response in
+                assert(response.val != nil)
+                asycexpectation.fulfill()
+            }
         }
 
+        waitForExpectations(timeout: 10.0) { (error) in
+            print(error ?? "Pool test expectation passed")
+        }
 
     }
 

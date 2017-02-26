@@ -9,6 +9,7 @@
 import Foundation
 
 public class Future<T> {
+
     var callbacks:[(T) -> ()] = []
     var cached: T?
 

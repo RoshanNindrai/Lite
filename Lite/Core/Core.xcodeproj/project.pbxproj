@@ -81,7 +81,8 @@
 		AB2DB8531E41A27500E46816 /* BasicCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2DB8521E41A27500E46816 /* BasicCache.swift */; };
 		AB61180B1E4EE44900E6C0A7 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB61180A1E4EE44900E6C0A7 /* Future.swift */; };
 		AB641C8B1E41B5DB006535A7 /* DiscCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB641C8A1E41B5DB006535A7 /* DiscCache.swift */; };
-		AB69983E1E62594B0057137E /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB69983D1E62594B0057137E /* Cache.swift */; };
+		AB7ED4051E63232C00F09D0D /* PooledCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7ED4041E63232C00F09D0D /* PooledCache.swift */; };
+		AB7ED4071E63575C00F09D0D /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7ED4061E63575C00F09D0D /* ReadWriteLock.swift */; };
 		AB955CD21E1B2BE0008014E6 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB955CC81E1B2BE0008014E6 /* Core.framework */; };
 		AB955CD71E1B2BE0008014E6 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CD61E1B2BE0008014E6 /* CoreTests.swift */; };
 		AB955CD91E1B2BE0008014E6 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = AB955CCB1E1B2BE0008014E6 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -185,7 +186,8 @@
 		AB2DB8521E41A27500E46816 /* BasicCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicCache.swift; path = Cache/BasicCache.swift; sourceTree = "<group>"; };
 		AB61180A1E4EE44900E6C0A7 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		AB641C8A1E41B5DB006535A7 /* DiscCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscCache.swift; path = Cache/DiscCache.swift; sourceTree = "<group>"; };
-		AB69983D1E62594B0057137E /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = Cache/Cache.swift; sourceTree = "<group>"; };
+		AB7ED4041E63232C00F09D0D /* PooledCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PooledCache.swift; path = Cache/PooledCache.swift; sourceTree = "<group>"; };
+		AB7ED4061E63575C00F09D0D /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
 		AB955CC81E1B2BE0008014E6 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB955CCB1E1B2BE0008014E6 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		AB955CCC1E1B2BE0008014E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 		AB98E4801E40E6BB003E5FC0 /* Cache */ = {
 			isa = PBXGroup;
 			children = (
+				AB7ED4061E63575C00F09D0D /* ReadWriteLock.swift */,
 				AB26BB801E45700100CD7C58 /* types */,
 				AB26BAF91E4310D400CD7C58 /* CryptoSwift */,
 				AB98E48B1E4176B7003E5FC0 /* protocol */,
@@ -425,7 +428,7 @@
 				AB26BA6C1E42E4EF00CD7C58 /* FileStorage.swift */,
 				AB26BB811E45703A00CD7C58 /* MemoryStorage.swift */,
 				AB26BB871E462B8900CD7C58 /* CacheFactory.swift */,
-				AB69983D1E62594B0057137E /* Cache.swift */,
+				AB7ED4041E63232C00F09D0D /* PooledCache.swift */,
 			);
 			name = Cache;
 			sourceTree = "<group>";
@@ -596,7 +599,6 @@
 				AB26BB721E4310D400CD7C58 /* SHA3.swift in Sources */,
 				AB26BB681E4310D400CD7C58 /* PBKDF2.swift in Sources */,
 				AB26BB4A1E4310D400CD7C58 /* RandomAccessBlockModeWorker.swift in Sources */,
-				AB69983E1E62594B0057137E /* Cache.swift in Sources */,
 				AB26BB441E4310D400CD7C58 /* CBC.swift in Sources */,
 				AB26BB771E4310D400CD7C58 /* UInt8+Extension.swift in Sources */,
 				AB26BB3C1E4310D400CD7C58 /* AES.swift in Sources */,
@@ -605,6 +607,7 @@
 				AB26BB531E4310D400CD7C58 /* Digest.swift in Sources */,
 				AB955CE91E1B2C1A008014E6 /* Resource.swift in Sources */,
 				AB26BB8A1E4816AE00CD7C58 /* BaseCache.swift in Sources */,
+				AB7ED4051E63232C00F09D0D /* PooledCache.swift in Sources */,
 				AB26BB881E462B8900CD7C58 /* CacheFactory.swift in Sources */,
 				AB26BB701E4310D400CD7C58 /* SHA1.swift in Sources */,
 				AB26BB3F1E4310D400CD7C58 /* Bit.swift in Sources */,
@@ -625,6 +628,7 @@
 				AB26BB6A1E4310D400CD7C58 /* PKCS7.swift in Sources */,
 				AB26BB6C1E4310D400CD7C58 /* Rabbit.swift in Sources */,
 				AB26BB821E45703A00CD7C58 /* MemoryStorage.swift in Sources */,
+				AB7ED4071E63575C00F09D0D /* ReadWriteLock.swift in Sources */,
 				AB26BB471E4310D400CD7C58 /* ECB.swift in Sources */,
 				AB26BB691E4310D400CD7C58 /* PKCS5.swift in Sources */,
 				AB26BB4E1E4310D400CD7C58 /* Checksum.swift in Sources */,

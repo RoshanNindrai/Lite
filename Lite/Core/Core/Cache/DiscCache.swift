@@ -24,7 +24,7 @@ extension DiscCache : CachePolicy {
 
     public func get(key: K) -> Future<CacheResponse<Value>> {
         let archievedData = storage?[key.toString()]
-        return Future<CacheResponse<Value>> {completion in
+        return Future<CacheResponse<Value>> { completion in
             if let archivedValue = archievedData!.val {
                 let unArchivedData = NSKeyedUnarchiver.unarchiveObject(with: archivedValue)
                 completion(CacheResponse<V>(unArchivedData as? V, cacheExpiry: archievedData!.expiry!))

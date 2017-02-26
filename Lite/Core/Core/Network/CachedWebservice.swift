@@ -40,10 +40,10 @@ public final class CachedWebservice {
         })
     }
 
-    public func load<A>(resource: Resource<A>) -> Future<A> {
+    public func load<A>(resource: Resource<A>) -> Future<Response<A>> {
         /// If the cache has no data to be returned immediately then we do network call
-        return Future { completion in
-            
+        return Future<Response<A>> { completion in
+            load(resource: resource, completion: completion)
         }
     }
 

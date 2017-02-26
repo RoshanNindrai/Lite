@@ -47,7 +47,10 @@ class NetworkRequestTest: CoreTests {
         })
 
         Webservice
-            .load(resource: test).onResult { _ in
+            .load(resource: test).onResult { response in
+                if case let Response.success(data, _, _) = response {
+                    print(data?.origin ?? "No origin value")
+                }
                 asyncExpectation.fulfill()
             }
 
