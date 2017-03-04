@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0C2A0A1E6B27CA000F5ACF /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0C2A091E6B27CA000F5ACF /* AsyncOperation.swift */; };
+		AB0C2A0D1E6B316E000F5ACF /* AsyncOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0C2A0C1E6B316E000F5ACF /* AsyncOperation.swift */; };
 		AB26BA6D1E42E4EF00CD7C58 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26BA6C1E42E4EF00CD7C58 /* FileStorage.swift */; };
 		AB26BA701E43035500CD7C58 /* StringConvertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26BA6F1E43035500CD7C58 /* StringConvertable.swift */; };
 		AB26BB3C1E4310D400CD7C58 /* AES.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB26BAFA1E4310D400CD7C58 /* AES.swift */; };
@@ -112,6 +114,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB0C2A091E6B27CA000F5ACF /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncOperation.swift; path = Utils/AsyncOperation.swift; sourceTree = "<group>"; };
+		AB0C2A0C1E6B316E000F5ACF /* AsyncOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncOperation.swift; path = Utils/AsyncOperation.swift; sourceTree = "<group>"; };
 		AB26BA6C1E42E4EF00CD7C58 /* FileStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FileStorage.swift; path = Cache/FileStorage.swift; sourceTree = "<group>"; };
 		AB26BA6F1E43035500CD7C58 /* StringConvertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringConvertable.swift; path = Cache/StringConvertable.swift; sourceTree = "<group>"; };
 		AB26BAFA1E4310D400CD7C58 /* AES.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AES.swift; sourceTree = "<group>"; };
@@ -228,6 +232,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0C2A081E6B2761000F5ACF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AB0C2A091E6B27CA000F5ACF /* AsyncOperation.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		AB0C2A0B1E6B3138000F5ACF /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AB0C2A0C1E6B316E000F5ACF /* AsyncOperation.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		AB26BAF91E4310D400CD7C58 /* CryptoSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +375,7 @@
 		AB955CCA1E1B2BE0008014E6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				AB0C2A081E6B2761000F5ACF /* Utils */,
 				AB98E4801E40E6BB003E5FC0 /* Cache */,
 				AB955CE21E1B2C1A008014E6 /* Network */,
 				AB955CCB1E1B2BE0008014E6 /* Core.h */,
@@ -366,6 +387,7 @@
 		AB955CD51E1B2BE0008014E6 /* CoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB0C2A0B1E6B3138000F5ACF /* Utils */,
 				AB98E4921E41807D003E5FC0 /* Cache */,
 				AB955CEC1E1B2C4E008014E6 /* Network */,
 				AB955CD61E1B2BE0008014E6 /* CoreTests.swift */,
@@ -615,6 +637,7 @@
 				AB26BB6E1E4310D400CD7C58 /* RandomBytesSequence.swift in Sources */,
 				AB26BB4C1E4310D400CD7C58 /* BytesSequence.swift in Sources */,
 				AB26BB5A1E4310D400CD7C58 /* HMAC+Foundation.swift in Sources */,
+				AB0C2A0A1E6B27CA000F5ACF /* AsyncOperation.swift in Sources */,
 				AB26BB7F1E44B2FE00CD7C58 /* CacheExpiry.swift in Sources */,
 				AB26BB3D1E4310D400CD7C58 /* Array+Extension.swift in Sources */,
 				AB26BB661E4310D400CD7C58 /* Padding.swift in Sources */,
@@ -677,6 +700,7 @@
 				AB955CD71E1B2BE0008014E6 /* CoreTests.swift in Sources */,
 				AB955CF21E1B2C4E008014E6 /* Request.swift in Sources */,
 				AB98E4941E4180A3003E5FC0 /* Cache.swift in Sources */,
+				AB0C2A0D1E6B316E000F5ACF /* AsyncOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
