@@ -67,8 +67,4 @@ public class AsyncOperation : Operation {
         handle(self)
     }
 
-    deinit {
-        print("Cleanup called")
-    }
-
 }
