@@ -62,4 +62,13 @@ public extension Resource {
     mutating func addHeader(key: String, Value: String) {
         header?[key] = Value
     }
+
+
+    /// This method returns the header dict associated with the resource request
+    ///
+    /// - Returns: A dict containing request header information
+    func getHeader() -> [String:String] {
+        return header!
+    }
+
 }

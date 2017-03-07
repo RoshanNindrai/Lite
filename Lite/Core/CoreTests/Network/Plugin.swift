@@ -22,24 +22,22 @@ class PluginTest: CoreTests {
                                                 return DummyGetResource(dataDict: dictionaries)
         })
 
-        Webservice.add(plugin: AuthPlugin())
+        Webservice.add(plugins: [AuthPlugin()])
 
         Webservice.load(resource: test, completion: { result in
 
             switch result {
             case .success(let data, let httpResponse, _):
+                asyncExpectation.fulfill()
                 if let httpResponse = httpResponse as? HTTPURLResponse {
                     print("reponse status code \(httpResponse.statusCode)")
                 }
                 if let reponsedata = data { print(reponsedata) }
             case .failure(let error):
                 print("OMG ERROR \(error.localizedDescription)")
+                asyncExpectation.fulfill()
             }
         })
-
-        Webservice.getTask(resource: test) { task in
-            asyncExpectation.fulfill()
-        }
 
         waitForExpectations(timeout: 10.0) { (error) in
             print(error ?? "network GET test passed")

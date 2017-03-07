@@ -134,11 +134,11 @@ public extension Webservice {
 
 public extension Webservice {
 
-    /// This method add a plugin type to the webservice
+    /// This method add a colelction of plugins type to the webservice
     ///
-    /// - Parameter plugin: The actual plugin that needs to be added as part of the service
-    class func add(plugin: PluginType) {
-        shared.plugins.append(plugin)
+    /// - Parameter plugins: The actual plugin that needs to be added as part of the service
+    class func add(plugins: [PluginType]) {
+        shared.plugins.append(contentsOf: plugins)
     }
 
 }
