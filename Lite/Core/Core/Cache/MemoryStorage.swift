@@ -33,14 +33,15 @@ public extension MemoryStorage {
                 let timeSinceLastCache = Date()
                 if timeSinceLastCache.compare(expiryTimeInterval)  == .orderedDescending {
                     storage.removeObject(forKey: hashedKey)
-                     return CacheResponse<Value>(nil, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
+                    expiryTable?.removeObject(forKey: hashedKey.toString())
+                     return CacheResponse<Value>(nil, cacheExpiry: .Date(expiryTimeInterval))
                 }
             }
 
             if let cachedData = storage.object(forKey: hashedKey) {
                 return CacheResponse<Value>(cachedData, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
             }
-            return CacheResponse<Value>(nil, cacheExpiry: .Date(expiryTable?.value(forKey: hashedKey.toString()) as! Date))
+            return CacheResponse<Value>(nil, cacheExpiry: .Date(Date()))
         }
         set {
             if let toSaveData = newValue.val {

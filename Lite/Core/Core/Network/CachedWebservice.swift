@@ -24,20 +24,24 @@ public final class CachedWebservice {
         let result = cache.get(resource: resource)
 
         result.onResult { cachedData in
-            completion(.success(resource.parse(cachedData.val as! Data), nil, nil))
-        }
 
-        Webservice.load(resource: resource, completion: { result in
-            switch result {
-                case let .failure(error):
-                    completion(.failure(error))
-                case let .success(data):
-                    if let serverResponse = data.2 {
-                        self.cache.set(key: resource.url, value: NSData(data: serverResponse), expiry: resource.cacheExpiry)
-                        completion(.success(data.0, data.1, serverResponse))
-                    }
+            if let data = cachedData.val as? Data {
+                completion(.success(resource.parse(data), nil, nil))
             }
-        })
+            else {
+                Webservice.load(resource: resource, completion: { result in
+                    switch result {
+                    case let .failure(error):
+                        completion(.failure(error))
+                    case let .success(data):
+                        if let serverResponse = data.2 {
+                            self.cache.set(key: resource.url, value: NSData(data: serverResponse), expiry: resource.cacheExpiry)
+                            completion(.success(data.0, data.1, serverResponse))
+                        }
+                    }
+                })
+            }
+        }
     }
 
     public func load<A>(resource: Resource<A>) -> Future<Response<A>> {
