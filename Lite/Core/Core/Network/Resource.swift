@@ -31,7 +31,7 @@ public extension Resource {
     /// - returns: returns a Resource that can be handed over to WebService
     init(url: URL,
          type : RequestType<AnyObject> = .GET,
-         header: [String:String]? = nil, cacheExpiry: CacheExpiry = .Never,
+         header: [String:String]? = [:], cacheExpiry: CacheExpiry = .Never,
          parseJSON: @escaping (Any) -> R?) {
 
         self.url = url
@@ -50,4 +50,16 @@ public extension Resource {
 
     }
 
+}
+
+public extension Resource {
+
+    /// Add header to the reqeust
+    ///
+    /// - Parameters:
+    ///   - key: The key that needs to be in the header dict ex Content-type
+    ///   - Value: The value corresponding to the header key ex application/json
+    mutating func addHeader(key: String, Value: String) {
+        header?[key] = Value
+    }
 }

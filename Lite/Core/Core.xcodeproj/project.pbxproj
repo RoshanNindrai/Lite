@@ -85,6 +85,8 @@
 		AB641C8B1E41B5DB006535A7 /* DiscCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB641C8A1E41B5DB006535A7 /* DiscCache.swift */; };
 		AB7ED4051E63232C00F09D0D /* PooledCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7ED4041E63232C00F09D0D /* PooledCache.swift */; };
 		AB7ED4071E63575C00F09D0D /* ReadWriteLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB7ED4061E63575C00F09D0D /* ReadWriteLock.swift */; };
+		AB8264441E6E40640058ECAB /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8264431E6E40640058ECAB /* AuthPlugin.swift */; };
+		AB8264461E6E41750058ECAB /* Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8264451E6E41750058ECAB /* Plugin.swift */; };
 		AB955CD21E1B2BE0008014E6 /* Core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB955CC81E1B2BE0008014E6 /* Core.framework */; };
 		AB955CD71E1B2BE0008014E6 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB955CD61E1B2BE0008014E6 /* CoreTests.swift */; };
 		AB955CD91E1B2BE0008014E6 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = AB955CCB1E1B2BE0008014E6 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -100,6 +102,7 @@
 		AB98E48D1E4177B4003E5FC0 /* CachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E48C1E4177B4003E5FC0 /* CachePolicy.swift */; };
 		AB98E48F1E4178BD003E5FC0 /* CacheResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E48E1E4178BD003E5FC0 /* CacheResponse.swift */; };
 		AB98E4941E4180A3003E5FC0 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB98E4931E4180A3003E5FC0 /* Cache.swift */; };
+		ABCC3B8A1E6E31BD0014C5ED /* PluginType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABCC3B891E6E31BD0014C5ED /* PluginType.swift */; };
 		ABD494621E1C9D15000D5F67 /* MutableURLRequest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +195,8 @@
 		AB641C8A1E41B5DB006535A7 /* DiscCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DiscCache.swift; path = Cache/DiscCache.swift; sourceTree = "<group>"; };
 		AB7ED4041E63232C00F09D0D /* PooledCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PooledCache.swift; path = Cache/PooledCache.swift; sourceTree = "<group>"; };
 		AB7ED4061E63575C00F09D0D /* ReadWriteLock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadWriteLock.swift; sourceTree = "<group>"; };
+		AB8264431E6E40640058ECAB /* AuthPlugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AuthPlugin.swift; path = plugins/AuthPlugin.swift; sourceTree = "<group>"; };
+		AB8264451E6E41750058ECAB /* Plugin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plugin.swift; sourceTree = "<group>"; };
 		AB955CC81E1B2BE0008014E6 /* Core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB955CCB1E1B2BE0008014E6 /* Core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		AB955CCC1E1B2BE0008014E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -210,6 +215,7 @@
 		AB98E48C1E4177B4003E5FC0 /* CachePolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CachePolicy.swift; path = Cache/CachePolicy.swift; sourceTree = "<group>"; };
 		AB98E48E1E4178BD003E5FC0 /* CacheResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CacheResponse.swift; path = Cache/CacheResponse.swift; sourceTree = "<group>"; };
 		AB98E4931E4180A3003E5FC0 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = Cache/Cache.swift; sourceTree = "<group>"; };
+		ABCC3B891E6E31BD0014C5ED /* PluginType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PluginType.swift; path = plugins/PluginType.swift; sourceTree = "<group>"; };
 		ABD494611E1C9D15000D5F67 /* MutableURLRequest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MutableURLRequest+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -354,6 +360,14 @@
 			name = types;
 			sourceTree = "<group>";
 		};
+		AB8264421E6E40490058ECAB /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				AB8264431E6E40640058ECAB /* AuthPlugin.swift */,
+			);
+			name = Plugins;
+			sourceTree = "<group>";
+		};
 		AB955CBE1E1B2BE0008014E6 = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +413,7 @@
 		AB955CE21E1B2C1A008014E6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				ABCC3B881E6E31A50014C5ED /* plugins */,
 				AB955CE31E1B2C1A008014E6 /* Request.swift */,
 				AB955CE41E1B2C1A008014E6 /* Resource.swift */,
 				AB955CE51E1B2C1A008014E6 /* Webservice.swift */,
@@ -422,10 +437,12 @@
 		AB955CEC1E1B2C4E008014E6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				AB8264421E6E40490058ECAB /* Plugins */,
 				AB955CED1E1B2C4E008014E6 /* Request.swift */,
 				AB955CEE1E1B2C4E008014E6 /* Resource.swift */,
 				AB955CEF1E1B2C4E008014E6 /* Service.swift */,
 				AB955CF01E1B2C4E008014E6 /* Utils */,
+				AB8264451E6E41750058ECAB /* Plugin.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -470,6 +487,22 @@
 				AB98E4931E4180A3003E5FC0 /* Cache.swift */,
 			);
 			name = Cache;
+			sourceTree = "<group>";
+		};
+		ABCC3B881E6E31A50014C5ED /* plugins */ = {
+			isa = PBXGroup;
+			children = (
+				ABCC3B8B1E6E35470014C5ED /* protocol */,
+			);
+			name = plugins;
+			sourceTree = "<group>";
+		};
+		ABCC3B8B1E6E35470014C5ED /* protocol */ = {
+			isa = PBXGroup;
+			children = (
+				ABCC3B891E6E31BD0014C5ED /* PluginType.swift */,
+			);
+			name = protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -673,6 +706,7 @@
 				AB26BB501E4310D400CD7C58 /* Collection+Extension.swift in Sources */,
 				AB98E47F1E4019A3003E5FC0 /* Response.swift in Sources */,
 				AB26BB561E4310D400CD7C58 /* Blowfish+Foundation.swift in Sources */,
+				ABCC3B8A1E6E31BD0014C5ED /* PluginType.swift in Sources */,
 				AB26BB551E4310D400CD7C58 /* AES+Foundation.swift in Sources */,
 				AB26BB731E4310D400CD7C58 /* String+Extension.swift in Sources */,
 				AB61180B1E4EE44900E6C0A7 /* Future.swift in Sources */,
@@ -694,10 +728,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB8264461E6E41750058ECAB /* Plugin.swift in Sources */,
 				AB955CF31E1B2C4E008014E6 /* Resource.swift in Sources */,
 				AB955CF41E1B2C4E008014E6 /* Service.swift in Sources */,
 				AB955CF51E1B2C4E008014E6 /* Dictionary+Utils.swift in Sources */,
 				AB955CD71E1B2BE0008014E6 /* CoreTests.swift in Sources */,
+				AB8264441E6E40640058ECAB /* AuthPlugin.swift in Sources */,
 				AB955CF21E1B2C4E008014E6 /* Request.swift in Sources */,
 				AB98E4941E4180A3003E5FC0 /* Cache.swift in Sources */,
 				AB0C2A0D1E6B316E000F5ACF /* AsyncOperation.swift in Sources */,

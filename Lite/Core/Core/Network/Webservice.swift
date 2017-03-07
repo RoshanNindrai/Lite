@@ -10,6 +10,9 @@ import Foundation
 
 final public class Webservice: NSObject {
 
+    //contains all the plugins that is needed during load method
+    fileprivate var plugins: [PluginType] = []
+
     //  The configuration for the session that is to be handled
     fileprivate var sessionConfig : URLSessionConfiguration = .default {
         didSet { Webservice.shared.sessionConfig = sessionConfig }
@@ -38,21 +41,36 @@ public extension Webservice {
 
 public extension Webservice {
 
-    /// This method is used to perfrom the url request and call the completion
+    /// This method is used to perform the url request and call the completion
     /// handler with the aquired resources
     ///
     /// - parameter resource:   The request resource that was asked by the user
     /// - parameter completion: The completion handler takes in a resource
     class func load<A>(_ session: URLSession? = shared.session, resource: Resource<A>, completion: @escaping (Response<A>) -> ()) {
 
-        let request = URLRequest(resource: resource)
+        let mutatedResource: Resource<A> = shared.plugins.reduce(resource) { resource, plugin in
+            return plugin.willMakeRequest(with: resource)
+        }
+
+        let request = URLRequest(resource: mutatedResource)
+
         session?.dataTask(with: request) { data, response, error in
-            if let data = data {
-                completion(.success(resource.parse(data), response, data))
-            } else if let error = error {
+
+            let modresponse = shared.plugins.reduce((data, response, error)) { response, plugin in
+                return plugin.willParseResponse(response: response, for: mutatedResource)
+            }
+
+            if let data = modresponse.0 {
+                completion(.success(mutatedResource.parse(data), modresponse.1, data))
+            } else if let error = modresponse.2 {
                 completion(.failure(error))
             }
+
         }.resume()
+
+        _ = shared.plugins.map { plugin in
+            plugin.didMakeRequest(with: mutatedResource, request: request)
+        }
 
     }
 
@@ -111,3 +129,17 @@ public extension Webservice {
     }
 
 }
+
+//MARK: Plugin support
+
+public extension Webservice {
+
+    /// This method add a plugin type to the webservice
+    ///
+    /// - Parameter plugin: The actual plugin that needs to be added as part of the service
+    class func add(plugin: PluginType) {
+        shared.plugins.append(plugin)
+    }
+
+}
+

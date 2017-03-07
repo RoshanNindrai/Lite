@@ -18,7 +18,6 @@ public enum State: String {
     private func isPrefixed() -> String {
         return "is" + rawValue
     }
-
 }
 
 public class AsyncOperation : Operation {
